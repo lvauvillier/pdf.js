@@ -114,6 +114,36 @@ class Page {
     return shadow(this, 'cropBox', cropBox);
   }
 
+  get trimBox() {
+    const trimBox = this._getInheritableProperty('TrimBox',
+                                                 /* getArray = */ true);
+    // Reset invalid trim box to media box.
+    if (!Array.isArray(trimBox) || trimBox.length !== 4) {
+      return shadow(this, 'trimBox', this.mediaBox);
+    }
+    return shadow(this, 'trimBox', trimBox);
+  }
+
+  get bleedBox() {
+    const bleedBox = this._getInheritableProperty('BleedBox',
+                                                 /* getArray = */ true);
+    // Reset invalid bleed box to media box.
+    if (!Array.isArray(bleedBox) || bleedBox.length !== 4) {
+      return shadow(this, 'bleedBox', this.mediaBox);
+    }
+    return shadow(this, 'bleedBox', bleedBox);
+  }
+
+  get artBox() {
+    const artBox = this._getInheritableProperty('ArtBox',
+                                                 /* getArray = */ true);
+    // Reset invalid art box to media box.
+    if (!Array.isArray(artBox) || artBox.length !== 4) {
+      return shadow(this, 'artBox', this.mediaBox);
+    }
+    return shadow(this, 'artBox', artBox);
+  }
+
   get userUnit() {
     let obj = this.pageDict.get('UserUnit');
     if (!isNum(obj) || obj <= 0) {

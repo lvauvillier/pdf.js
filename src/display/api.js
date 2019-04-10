@@ -812,6 +812,8 @@ class PDFDocumentProxy {
  *   the viewport. If omitted it defaults to the page rotation.
  * @property {boolean} dontFlip - (optional) If true, the y-axis will not be
  *   flipped. The default value is `false`.
+ * @property {Array} (optional) The desired visible portion of the PDF page
+ *   in the user space units - [x1, y1, x2, y2]
  */
 
 /**
@@ -958,12 +960,33 @@ class PDFPageProxy {
     return this._pageInfo.view;
   }
 
+  get mediaBox() {
+    return this._pageInfo.mediaBox;
+  }
+
+  get bleedBox() {
+    return this._pageInfo.bleedBox;
+  }
+
+  get cropBox() {
+    return this._pageInfo.cropBox;
+  }
+
+  get trimBox() {
+    return this._pageInfo.trimBox;
+  }
+
+  get artBox() {
+    return this._pageInfo.artBox;
+  }
+
   /**
    * @param {GetViewportParameters} params - Viewport parameters.
    * @return {PageViewport} Contains 'width' and 'height' properties
    *   along with transforms required for rendering.
    */
-  getViewport({ scale, rotation = this.rotate, dontFlip = false, } = {}) {
+  getViewport({ scale, rotation = this.rotate, dontFlip = false,
+                viewBox = this.view, } = {}) {
     if ((typeof PDFJSDev !== 'undefined' && PDFJSDev.test('GENERIC')) &&
         (arguments.length > 1 || typeof arguments[0] === 'number')) {
       deprecated('getViewport is called with obsolete arguments.');
@@ -972,7 +995,7 @@ class PDFPageProxy {
       dontFlip = typeof arguments[2] === 'boolean' ? arguments[2] : false;
     }
     return new PageViewport({
-      viewBox: this.view,
+      viewBox,
       scale,
       rotation,
       dontFlip,

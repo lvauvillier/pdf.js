@@ -367,12 +367,31 @@ var WorkerMessageHandler = {
           pdfManager.ensure(page, 'ref'),
           pdfManager.ensure(page, 'userUnit'),
           pdfManager.ensure(page, 'view'),
-        ]).then(function([rotate, ref, userUnit, view]) {
+          pdfManager.ensure(page, 'mediaBox'),
+          pdfManager.ensure(page, 'bleedBox'),
+          pdfManager.ensure(page, 'cropBox'),
+          pdfManager.ensure(page, 'trimBox'),
+          pdfManager.ensure(page, 'artBox'),
+        ]).then(function([
+          rotate,
+          ref,
+          userUnit,
+          view,
+          mediaBox,
+          bleedBox,
+          cropBox,
+          trimBox,
+          artBox]) {
           return {
             rotate,
             ref,
             userUnit,
             view,
+            mediaBox,
+            bleedBox,
+            cropBox,
+            trimBox,
+            artBox,
           };
         });
       });
