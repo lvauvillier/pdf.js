@@ -27,6 +27,8 @@ var pdfjsDisplayTextLayer = require('./display/text_layer.js');
 var pdfjsDisplayAnnotationLayer = require('./display/annotation_layer.js');
 var pdfjsDisplayDisplayUtils = require('./display/display_utils.js');
 var pdfjsDisplaySVG = require('./display/svg.js');
+var pdfjsDisplayCanvas = require('./display/canvas.js');
+var pdfjsDisplayWebGL = require('./display/webgl.js');
 let pdfjsDisplayWorkerOptions = require('./display/worker_options.js');
 let pdfjsDisplayAPICompatibility = require('./display/api_compatibility.js');
 
@@ -93,6 +95,8 @@ exports.PasswordResponses = pdfjsSharedUtil.PasswordResponses;
 exports.InvalidPDFException = pdfjsSharedUtil.InvalidPDFException;
 exports.MissingPDFException = pdfjsSharedUtil.MissingPDFException;
 exports.SVGGraphics = pdfjsDisplaySVG.SVGGraphics;
+exports.CanvasGraphics = pdfjsDisplayCanvas.CanvasGraphics;
+exports.WebGLContext = pdfjsDisplayWebGL.WebGLContext;
 exports.NativeImageDecoding = pdfjsSharedUtil.NativeImageDecoding;
 exports.CMapCompressionType = pdfjsSharedUtil.CMapCompressionType;
 exports.PermissionFlag = pdfjsSharedUtil.PermissionFlag;
